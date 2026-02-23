@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Unidades</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        select, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+	input {
+	    width: 325px;
+	    padding: 10px;
+	    margin-bottom: 20px;
+	    border: 1px solid #ccc;
+	    border-radius: 4px;
+	}
+        button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        p {
+            font-size: 18px;
+            color: #333;
+            margin-top: 10px;
+	    text-align: center;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Conversor de Unidades</h1>
+
+        <label for="tipo-conversion">Selecciona una conversión:</label>
+        <select id="tipo-conversion">
+            <option value="metros-a-pies">Metros a Pies</option>
+            <option value="pies-a-metros">Pies a Metros</option>
+            <option value="centimetros-a-pulgadas">Centímetros a Pulgadas</option>
+            <option value="pulgadas-a-centimetros">Pulgadas a Centímetros</option>
+            <option value="kilogramos-a-libras">Kilogramos a Libras</option>
+            <option value="libras-a-kilogramos">Libras a Kilogramos</option>
+            <option value="litros-a-galones">Litros a Galones</option>
+            <option value="galones-a-litros">Galones a Litros</option>
+            <option value="litros-a-libras">Litros a Libras</option>
+            <option value="libras-a-litros">Libras a litros</option>
+            <option value="cc-a-pulgadas">Centímetros Cúbicos a Pulgadas Cúbicas</option>
+            <option value="pulgadas-a-cc">Pulgadas Cúbicas a Centímetros Cúbicos</option>
+            <option value="mn-a-lbs">Metros-Newton a Libras-Fuerza por Pulgada</option>
+            <option value="lbs-a-mn">Libras-Fuerza por Pulgada a Metros-Newton</option>
+            <option value="kgcm2-a-lbs">Kg por cm2 a Libras por Pulgada Cuadrada</option>
+            <option value="lbs-a-kgcm2">Libras por Pulgada Cuadrada a Kg por cm2</option>
+
+        </select>
+
+        <div class="input-container">
+            <label for="valor">Introduce el valor:</label>
+            <input type="number" id="valor" placeholder="Valor a convertir">
+        </div>
+
+        <button onclick="realizarConversion()">Convertir</button>
+
+        <p id="resultado"></p>
+
+        <H6 align="right"  style="color:green;margin-bottom: 0px;" >By Petrón</H6>
+    </div>
+
+    <script>
+        function realizarConversion() {
+            let tipoConversion = document.getElementById("tipo-conversion").value;
+            let valor = parseFloat(document.getElementById("valor").value);
+            let resultado = 0;
+            let unidadResultado = "";
+
+            if (isNaN(valor)) {
+                document.getElementById("resultado").innerText = "Por favor, ingresa un valor válido.";
+                return;
+            }
+
+            switch (tipoConversion) {
+                case "metros-a-pies":
+                    resultado = valor * 3.28084;
+                    unidadResultado = "pies";
+                    break;
+                case "pies-a-metros":
+                    resultado = valor / 3.28084;
+                    unidadResultado = "metros";
+                    break;
+                case "kilogramos-a-libras":
+                    resultado = valor * 2.20462;
+                    unidadResultado = "libras";
+                    break;
+                case "libras-a-kilogramos":
+                    resultado = valor / 2.20462;
+                    unidadResultado = "kilogramos";
+                    break;
+                case "litros-a-galones":
+                    resultado = valor / 3.78541;
+                    unidadResultado = "galones";
+                    break;
+                case "galones-a-litros":
+                    resultado = valor * 3.78541;
+                    unidadResultado = "litros";
+                    break;
+                case "cc-a-pulgadas":
+                    resultado = valor / 16.387;
+                    unidadResultado = "pulgadas cúbicas";
+                    break;
+                case "pulgadas-a-cc":
+                    resultado = valor * 16.387;
+                    unidadResultado = "centímetros cúbicos";
+                    break;
+                case "mn-a-lbs":
+                    resultado = valor * 0.224809;
+                    unidadResultado = "libras-fuerza por pulgada";
+                    break;
+                case "lbs-a-mn":
+                    resultado = valor / 0.224809;
+                    unidadResultado = "metros-newton";
+                    break;
+                case "kgcm2-a-lbs":
+                    resultado = valor * 0.2048;
+                    unidadResultado = "libras por pulgada cuadrada";
+                    break;
+                case "lbs-a-kgcm2":
+                    resultado = valor / 0.2048;
+                    unidadResultado = "kilogramos por centímetro cuadrado";
+                    break;
+		case "litros-a-libras":
+                    resultado = valor * 2.2046;
+                    unidadResultado = "Libras";
+                    break;
+		case "libras-a-litros":
+                    resultado = valor / 2.2046;
+                    unidadResultado = "Litros";
+                    break;
+		case "centimetros-a-pulgadas":
+                    resultado = valor / 2.54;
+                    unidadResultado = "Pulgadas";
+                    break;
+		case "pulgadas-a-centimetros":
+                    resultado = valor * 2.54;
+                    unidadResultado = "Centimetros";
+                    break;
+		    
+                default:
+                    document.getElementById("resultado").innerText = "Error al seleccionar una conversión.";
+                    return;
+            }
+
+            document.getElementById("resultado").innerText = `${resultado.toFixed(2)} ${unidadResultado}.`;
+        }
+    </script>
+</body>
+</html>
